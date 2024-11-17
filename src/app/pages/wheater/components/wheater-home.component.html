@@ -1,0 +1,26 @@
+<body>
+  <div class="search">
+    <form #form="ngForm" (submit)="onSubmit()"
+    action="">
+    <input type="text" placeholder="Buscar localização"
+    name="city" [(ngModel)]="initialCityName">
+    <span (click)="onSubmit()">
+      <i class="bi bi-search"
+      style="color: white;
+      font-size: large; margin-left: 10px;"></i>
+    </span>
+    </form>
+  </div>
+
+</body>
+
+<!--Componente Filho recebendo Dados do Componente Pai
+WHEATHER-HOME PARA WHEATHER-CARD,
+*ngIf="weatherDatas" => validação quando tivermos
+dados por ser uma requisição Assincrona=> na primeira
+vez demora um tempo então necessário ultilizar
+a Diretiva ngIf, so vai ser renderizado se tivermos
+Dados do Componente  -->
+<app-wheater-card
+*ngIf="weatherDatas"
+[WeatherDatasInput]="weatherDatas"></app-wheater-card>

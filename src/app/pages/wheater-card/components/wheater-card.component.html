@@ -1,0 +1,94 @@
+<!--*ngIf="WeatherDatasInput" -> Verificação
+so renderiza componente se tiver Dados compartilhados
+do compornente Pai para o Filho-->
+<div class="container" *ngIf="WeatherDatasInput">
+  <div class="upper-data">
+    <!--
+  *ngIf="WeatherDatasInput.main.temp > 15" ->  se a temperatura
+for maior que 15 graus celsius, aparecerá a imagem de sol-->
+    <img
+      [src]="imgSol"
+      *ngIf="WeatherDatasInput.main.temp > 15"
+      alt="Dias Quentes e ensolarados"
+    />
+    <!--
+  *ngIf="WeatherDatasInput.main.temp > 15" ->  se a temperatura
+for menor que 15 graus celsius, aparecerá a imagem de Frio-->
+    <img
+      [src]="imgFrio"
+      *ngIf="WeatherDatasInput.main.temp <= 15"
+      alt="Dias Frios"
+    />
+    <!--Exibindo Dados da Localização cidade-->
+    <div class="weather-data">
+      <div class="location">
+        {{ WeatherDatasInput.name }}
+      </div>
+      <!--Exibindo Dados da Temperatura cidade-->
+
+      <div class="temperature">
+        <!--| number: "1.0-0" -> Pipe para converter
+        Temperatura a Número Inteiro-->
+        {{ WeatherDatasInput.main.temp | number : "1.0-0" }}ºC
+      </div>
+    </div>
+  </div>
+
+  <div class="lower-data">
+    <div class="more-info-label">Mais Informações</div>
+    <div class="more-info-container">
+      <div class="info-block">
+        <div class="info-block-label">
+          <i
+            class="bi bi-thermometer-snow"
+            style="color: white; font-size: 1.3em"
+          ></i>
+          <span>Minima</span>
+        </div>
+        <div class="info-block-value">
+          {{ WeatherDatasInput.main.temp_min | number : "1.0-0" }}ºC
+        </div>
+      </div>
+
+      <div class="info-block">
+        <div class="info-block-label">
+          <i
+            size="lg"
+            class="bi bi-thermometer-sun"
+            style="color: white; font-size: 1.3em"
+          ></i>
+          <span>Maxíma</span>
+        </div>
+        <div class="info-block-value">
+          {{ WeatherDatasInput.main.temp_max | number : "1.0-0" }}ºC
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">
+          <i
+            size="lg"
+            class="bi bi-droplet"
+            style="color: white; font-size: 1.3em"
+          ></i>
+          <span>Maxíma</span>
+        </div>
+        <div class="info-block-value">
+          {{ WeatherDatasInput.main.humidity }}%
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">
+          <i
+            size="lg"
+            class="bi bi-wind"
+            style="color: white; font-size: 1.3em"
+          ></i>
+          <span>Vento</span>
+        </div>
+        <div class="info-block-value">
+          {{ WeatherDatasInput.wind.speed }}km/h
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
